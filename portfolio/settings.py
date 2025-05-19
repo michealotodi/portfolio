@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core.apps.CoreConfig',
+    'core',
     'crispy_forms',
     'crispy_bootstrap5',
 ]
@@ -125,5 +125,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'michealotodi81@gmail.com'      # Replace with your email
-EMAIL_HOST_PASSWORD = 'gwyj gqmg pcmp eqre'     # Replace with your email's app password
+EMAIL_HOST_PASSWORD = 'aaxwgmyqxlhdesxb'     # Replace with your email's app password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

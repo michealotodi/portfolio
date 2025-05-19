@@ -115,8 +115,6 @@ Enabled scalable digital bookings, supporting the company’s transition into a 
         return context
 
 
-# views.py
-
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
@@ -149,9 +147,32 @@ class ContactView(TemplateView):
         full_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
 
         try:
-            send_mail(subject, full_message, email, ['michealotodi81email@gmail.com'])  # Your receiving email
+            send_mail(
+                subject,
+                full_message,
+                'michealotodi81@gmail.com',  # Sender must match EMAIL_HOST_USER
+                ['michealotodi81@gmail.com'],  # Recipient
+                fail_silently=False,
+            )
             messages.success(request, 'Message sent successfully!')
         except Exception as e:
             messages.error(request, f'Error sending message: {str(e)}')
 
         return redirect(f"{request.path}#contact")
+
+
+from django.core.mail import send_mail
+from django.http import HttpResponse
+
+def test_email_view(request):
+    try:
+        send_mail(
+            subject='Test Email',
+            message='This is a test email body.',
+            from_email='michealotodi81@gmail.com',
+            recipient_list=['michealotodi81@gmail.com'],
+            fail_silently=False,
+        )
+        return HttpResponse("✅ Email sent successfully.")
+    except Exception as e:
+        return HttpResponse(f"❌ Email failed: {str(e)}")
